@@ -1,8 +1,7 @@
 import 'dart:core';
-import 'package:flutter/cupertino.dart';
-import 'package:movie_app/constants/api.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:movie_app/constants/api.dart';
 import '../models/genre.dart';
 import '../models/movie.dart';
 
@@ -13,7 +12,9 @@ class MovieAPI {
   Future<List<Movie>> getMovies() async {
     List<Movie> movies = [];
     for (int i=1;i<10;i++) {
+
         dynamic data = await fetchData(urlString: moviesURL, pageNumber: i);
+
         if (data['results'] != null) {
           List<dynamic> movieList = data['results'];
 
@@ -32,8 +33,6 @@ class MovieAPI {
             ));
           }
         }
-
-
     }
     return movies;
 
@@ -73,16 +72,9 @@ class MovieAPI {
     if (response.statusCode == 200) {
       String data = response.body;
 
-      // print(jsonDecode(data));
       return jsonDecode(data);
     } else {
-      print(response.statusCode);
+      throw response.statusCode;
     }
   }
-}
-
-void main () async {
-  MovieAPI movieAPI = MovieAPI();
-  List<Movie> movies = await movieAPI.getMovies();
-  print(movies[0].title);
 }

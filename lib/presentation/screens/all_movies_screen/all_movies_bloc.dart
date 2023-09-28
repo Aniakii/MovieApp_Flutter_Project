@@ -43,7 +43,7 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
 
   Future<void> _onLoadDataEvent(LoadDataEvent event, Emitter<AllMoviesState> emit) async {
     
-    await event.movieDataBase.loadFromDatabase();
+    event.movieDataBase.loadFromDatabase();
 
     if (event.movieDataBase.movies.isEmpty || event.movieDataBase.genres.isEmpty) {
       emit(state.copyWith(status: AllMoviesStatus.errorOffline));

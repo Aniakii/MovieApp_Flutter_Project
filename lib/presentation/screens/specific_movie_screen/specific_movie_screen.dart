@@ -33,17 +33,17 @@ class SpecificMovieScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.topCenter,
                       child: FractionalTranslation(
-                        translation: Offset(0.0, 0.15),
+                        translation: const Offset(0.0, 0.15),
                         child: Container(
                           color: Colors.white,
-                          padding: EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(10.0),
                           width: 200.0,
                           height: 300.0,
                           child: Hero(
                             tag: selectedMovie.id.toString(),
                             child: CachedNetworkImage(
                               imageUrl: selectedMovie.posterImage,
-                              placeholder: (context, url) => CircularProgressIndicator(),
+                              placeholder: (context, url) => const CircularProgressIndicator(),
                               errorWidget: (context, url, error) => Image.asset('/images/error_image.png'),
                             ),
                           ),
@@ -52,9 +52,9 @@ class SpecificMovieScreen extends StatelessWidget {
                     ),
               ],
             ),
-            SizedBox(height: 60.0,),
+            const SizedBox(height: 60.0,),
             Container(
-                        color: Color(0xff303030),
+                        color: grey,
                         child: MovieInfo(selectedMovie),
                       ),
           ],

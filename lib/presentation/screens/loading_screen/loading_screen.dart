@@ -5,8 +5,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:movie_app/constants/color_palette.dart';
 import 'package:movie_app/data/repositories/movie_database.dart';
 import 'package:movie_app/presentation/screens/all_movies_screen/all_movies_screen.dart';
-import 'package:provider/provider.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:movie_app/presentation/screens/loading_screen/widgets/error_alerts.dart';
 import '../../../constants/enums.dart';
 import '../all_movies_screen/all_movies_bloc.dart';
 
@@ -33,46 +32,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
         if (state.status == AllMoviesStatus.ready) {
           Navigator.of(context).pushReplacementNamed(AllMoviesScreen.id);
         } else if (state.status == AllMoviesStatus.errorOnline) {
-          Alert(
-            context: context,
-            type: AlertType.error,
-            style: AlertStyle(backgroundColor: Colors.white),
-            title: "NO INTERNET CONNECTION",
-            desc: "It seems that you don't have an internet connection to download movie data. Do you want to try again loading data or show data from yours device memory (offline mode)?",
-            buttons: [
-              DialogButton(
-                child: Text(
-                  "TRY AGAIN",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                  context.read<AllMoviesBloc>().add(FetchDataEvent(context.read<MovieDataBase>()));
-                  },
-                color: brighterPurple,
-              ),
-              DialogButton(
-                child: Text(
-                  "GO OFFLINE",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                  context.read<AllMoviesBloc>().add(LoadDataEvent(context.read<MovieDataBase>()));
-                },
-                color: darkerPurple,
-        ),
-            ],
-          ).show();
+          getAlertErrorOnline(context).show();
         }
         else if(state.status == AllMoviesStatus.errorOffline) {
-          Alert(
-            context: context,
-            type: AlertType.warning,
-            style: AlertStyle(backgroundColor: Colors.white),
-            title: "NO DATA IN DEVICES MEMORY",
-            desc: "It seems that you haven't used the app yet and there is no data saved on your device. Close the app and open it when you have internet connection."
-          ).show();
+          getAlertErrorOffline(context).show();
         }
       },
       child: Scaffold(
