@@ -38,5 +38,5 @@ const List<SortMenuItem> sortMenuItems = [
   SortMenuItem(icon: Icons.star, description: 'Best rate', sortType: SortingType.bestRate),
   SortMenuItem(icon: Icons.expand_less, description: 'Most popular', sortType: SortingType.mostPopular),
   SortMenuItem(icon: Icons.expand_more, description: 'Least popular', sortType: SortingType.leastPopular),
-  SortMenuItem(icon: Icons.restart_alt, description: 'Default', sortType: SortingType.mostPopular),
+  SortMenuItem(icon: Icons.restart_alt, description: 'Default', sortType: SortingType.defaultSorting),
 ];

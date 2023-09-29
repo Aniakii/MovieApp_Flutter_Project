@@ -5,11 +5,13 @@ enum SortingType {
   bestRate,
   mostPopular,
   leastPopular,
+  defaultSorting,
 }
 
-enum AllMoviesStatus {
+enum LoadingDataStatus {
   loading,
   errorOnline,
   errorOffline,
+  errorOther,
   ready,
 }
