@@ -1,13 +1,12 @@
 import 'dart:core';
-import 'genre.dart';
+
 import 'package:hive/hive.dart';
+import 'genre.dart';
 
 part 'movie.g.dart';
 
-
 @HiveType(typeId: 0)
 class Movie extends HiveObject {
-
   @HiveField(0)
   final int id;
 
@@ -38,20 +37,28 @@ class Movie extends HiveObject {
   @HiveField(9)
   late final String stringGenres;
 
-  Movie({required this.id, required this.originalLanguage, required this.title, required this.overview, required this.popularity, required this.releaseDate, required this.voteAverage, required this.posterImage, required this.genres});
+  Movie(
+      {required this.id,
+      required this.originalLanguage,
+      required this.title,
+      required this.overview,
+      required this.popularity,
+      required this.releaseDate,
+      required this.voteAverage,
+      required this.posterImage,
+      required this.genres});
 
   void genresAsString(List<Genre> allGenres) {
     String tempGenres = '';
-    if (genres.isEmpty)
-      {
-        stringGenres = '';
-        return;
-      }
+    if (genres.isEmpty) {
+      stringGenres = '';
+      return;
+    }
     for (Genre genre in allGenres) {
-      if (genres.contains(genre.id)){
+      if (genres.contains(genre.id)) {
         tempGenres += '${genre.name}, ';
+      }
     }
-    }
-    stringGenres = tempGenres.substring(0,tempGenres.length - 2);
+    stringGenres = tempGenres.substring(0, tempGenres.length - 2);
   }
 }

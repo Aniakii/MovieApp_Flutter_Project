@@ -12,11 +12,18 @@ class Header extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text( HeaderTexts.headerTitle,
-            style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold, color: Colors.white),
+          Text(
+            AppTexts.headerTitle,
+            style: TextStyle(
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white),
           ),
-          SizedBox(height: 5.0,),
-          Text( HeaderTexts.headerDesc,
+          SizedBox(
+            height: 5.0,
+          ),
+          Text(
+            AppTexts.headerDesc,
             style: TextStyle(fontSize: 18.0, color: Colors.white),
           ),
         ],
