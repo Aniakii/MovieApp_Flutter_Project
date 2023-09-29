@@ -33,12 +33,13 @@ class LoadingTexts {
 }
 
 
-class HeaderTexts {
+class AppTexts {
   static const String appName = '🎬 MOVIE FINDER 🎬';
   static const String headerTitle = 'Hello! 👋';
   static const String headerDesc = 'What are we going to watch tonight? 🍿🎬';
 
   static const String searchHintText = 'Search a movie...';
+  static const String noMoviesText = "We couldn't find any movies. Sorry! :(";
 
-  HeaderTexts._();
+  AppTexts._();
 }

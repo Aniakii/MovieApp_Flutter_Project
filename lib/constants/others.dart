@@ -22,7 +22,7 @@ BoxDecoration cardDecoration = BoxDecoration(
 );
 
 InputDecoration textFieldDecoration = InputDecoration(
-  hintText: HeaderTexts.searchHintText,
+  hintText: AppTexts.searchHintText,
   filled: true,
   fillColor: Colors.white.withOpacity(0.5),
   border: OutlineInputBorder(

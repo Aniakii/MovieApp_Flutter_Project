@@ -68,7 +68,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.brighterPurple,
       appBar: AppBar(
-        title: const Text(HeaderTexts.appName), automaticallyImplyLeading: false,
+        title: const Text(AppTexts.appName), automaticallyImplyLeading: false,
       ),
       body: GestureDetector(
         onTap: () {
@@ -163,13 +163,12 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
                             } else {
                             return const Center(
                               child: Text(
-                                "We couldn't find any movies. Sorry! :(",
+                                AppTexts.noMoviesText,
                                 style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.center,
                               ),
                             );
                           }
-                          // TODO: czy dać to do osobnego bloca??
   },
 ),
                     ),

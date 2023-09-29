@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           BlocProvider<LoadingDataBloc>(create: (context) => LoadingDataBloc(context.read<MovieDataBase>()),),
     ],
         child: MaterialApp(
-          title: HeaderTexts.appName,
+          title: AppTexts.appName,
           theme: ThemeData(
               appBarTheme: const AppBarTheme(
                 color: AppColors.brighterPurple,
