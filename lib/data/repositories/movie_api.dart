@@ -1,13 +1,13 @@
-import 'dart:core';
 import 'dart:convert';
+import 'dart:core';
+
 import 'package:http/http.dart' as http;
+import 'package:movie_app/constants/api.dart';
 
 import '../models/genre.dart';
 import '../models/movie.dart';
-import 'package:movie_app/constants/api.dart';
 
 class MovieAPI {
-
   final client = http.Client();
 
   Future<List<Movie>> getMovies() async {

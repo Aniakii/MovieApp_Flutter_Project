@@ -12,15 +12,18 @@ class ErrorLoadingDataWidget extends StatelessWidget {
       backgroundColor: AppColors.darkerPurple,
       body: Center(
         child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(Icons.error, color: AppColors.brighterPurple,
-                    size: 100.0,),
-                  SizedBox(height: 50.0),
-                  Text(LoadingTexts.failedText, style: TextStyle(fontSize: 30.0)),
-                ],
-              ),
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.error,
+              color: AppColors.brighterPurple,
+              size: 100.0,
+            ),
+            SizedBox(height: 50.0),
+            Text(LoadingTexts.failedText, style: TextStyle(fontSize: 30.0)),
+          ],
+        ),
       ),
     );
   }

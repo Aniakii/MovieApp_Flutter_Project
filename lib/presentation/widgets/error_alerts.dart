@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-import 'package:movie_app/presentation/screens/loading_screen/loading_data_bloc.dart';
-
 import '../../constants/color_palette.dart';
 import '../../constants/texts.dart';
-
+import '../screens/loading_data_screen/loading_data_bloc.dart';
 
 Alert getAlertErrorOnline(BuildContext context) {
   return Alert(
@@ -45,34 +43,33 @@ Alert getAlertErrorOnline(BuildContext context) {
 }
 
 Alert getAlertErrorOffline(BuildContext context) {
-return Alert(
-    context: context,
-    type: AlertType.warning,
-    style: const AlertStyle(backgroundColor: Colors.white),
-    title: Alerts.offlineAlertTitle,
-    desc: Alerts.offlineAlertDesc,
-  buttons: [
-    DialogButton(
-      onPressed: () {
-        Navigator.pop(context);
+  return Alert(
+      context: context,
+      type: AlertType.warning,
+      style: const AlertStyle(backgroundColor: Colors.white),
+      title: Alerts.offlineAlertTitle,
+      desc: Alerts.offlineAlertDesc,
+      buttons: [
+        DialogButton(
+          onPressed: () {
+            Navigator.pop(context);
           },
-      color: AppColors.darkerPurple,
-      child: const Text(
-        Alerts.offlineButton,
-        style: TextStyle(color: Colors.white, fontSize: 18),
-      ),
-    ),
-  ]
-);
+          color: AppColors.darkerPurple,
+          child: const Text(
+            Alerts.offlineButton,
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+        ),
+      ]);
 }
 
 Alert getAlertErrorOther(BuildContext context) {
   return Alert(
-      context: context,
-      type: AlertType.error,
-      style: const AlertStyle(backgroundColor: Colors.white),
-      title: Alerts.otherAlertTitle,
-      desc: Alerts.otherAlertDesc,
+    context: context,
+    type: AlertType.error,
+    style: const AlertStyle(backgroundColor: Colors.white),
+    title: Alerts.otherAlertTitle,
+    desc: Alerts.otherAlertDesc,
     buttons: [
       DialogButton(
         onPressed: () {

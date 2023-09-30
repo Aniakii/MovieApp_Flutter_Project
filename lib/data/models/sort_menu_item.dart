@@ -6,5 +6,9 @@ class SortMenuItem {
   final String description;
   final SortingType sortType;
 
-  const SortMenuItem({required this.icon, required this.description, required this.sortType});
+  const SortMenuItem({
+    required this.icon,
+    required this.description,
+    required this.sortType,
+  });
 }

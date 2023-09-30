@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-
 import 'package:movie_app/constants/color_palette.dart';
 
 class GenreSelector extends StatelessWidget {
+  const GenreSelector({
+    required this.name,
+    required this.id,
+    required this.isSelected,
+    required this.chooseGenre,
+  });
 
-const GenreSelector({required this.name, required this.id, required this.isSelected, required this.chooseGenre});
+  final bool isSelected;
+  final String name;
+  final int id;
 
-final bool isSelected;
-final String name;
-final int id;
-
-final void Function() chooseGenre;
+  final void Function() chooseGenre;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -32,8 +35,7 @@ final void Function() chooseGenre;
           ],
         ),
         child: Center(
-         child:
-          FittedBox(
+          child: FittedBox(
             fit: BoxFit.scaleDown,
             child: Text(
               name,

@@ -1,6 +1,7 @@
 import 'dart:core';
 
 import 'package:hive/hive.dart';
+
 import 'genre.dart';
 
 part 'movie.g.dart';
@@ -23,7 +24,7 @@ class Movie extends HiveObject {
   final double popularity;
 
   @HiveField(5)
-  String posterImage;
+  final String posterImage;
 
   @HiveField(6)
   final DateTime releaseDate;

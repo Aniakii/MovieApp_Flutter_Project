@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../data/models/sort_menu_item.dart';
-import 'texts.dart';
 import 'color_palette.dart';
 import 'enums.dart';
+import 'texts.dart';
 
 BoxDecoration cardDecoration = BoxDecoration(
   color: AppColors.grey,

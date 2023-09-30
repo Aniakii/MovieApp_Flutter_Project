@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../constants/color_palette.dart';
@@ -34,7 +34,8 @@ class LoadingDataWidget extends StatelessWidget {
               ),
             ),
           ],
-        ),),
+        ),
+      ),
     );
   }
 }

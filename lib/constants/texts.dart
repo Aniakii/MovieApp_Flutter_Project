@@ -19,10 +19,11 @@ class Alerts {
 }
 
 class MovieDesc {
-  static const String moviePopularity = 'POPULARITY';
-  static const String movieVoteRate = 'VOTE RATE';
-  static const String movieReleaseDate = 'RELEASE DATE';
-  static const String movieOverview = 'Overview:';
+  static const String moviePopularity = "POPULARITY";
+  static const String movieVoteRate = "VOTE RATE";
+  static const String movieReleaseDate = "RELEASE DATE";
+  static const String movieGenre = "GENRE:";
+  static const String movieOverview = "Overview:";
 
   MovieDesc._();
 }

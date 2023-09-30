@@ -1,18 +1,16 @@
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
+
 import '../models/genre.dart';
 import '../models/movie.dart';
 
 class MovieDataBase {
-
   late final Box<Movie> moviesBox;
   late final Box<Genre> genresBox;
   List<Genre> genres = [];
   List<Movie> movies = [];
 
-
   Future<void> initializeDataBase() async {
-
     Hive.registerAdapter(MovieAdapter());
     Hive.registerAdapter(GenreAdapter());
 
@@ -21,8 +19,6 @@ class MovieDataBase {
   }
 
   Future<void> saveData(List<Movie> allMovies, List<Genre> allGenres) async {
-
-
     for (Movie movie in allMovies) {
       await moviesBox.put(movie.id.toString(), movie);
     }
@@ -33,7 +29,6 @@ class MovieDataBase {
   }
 
   void loadFromDatabase() {
-
     movies = [];
     genres = [];
 
@@ -44,7 +39,7 @@ class MovieDataBase {
       movies.add(movie);
     }
 
-    for(Genre genre in loadedGenres) {
+    for (Genre genre in loadedGenres) {
       genres.add(genre);
     }
   }
