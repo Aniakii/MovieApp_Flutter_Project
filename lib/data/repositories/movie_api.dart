@@ -7,11 +7,12 @@ import '../models/movie.dart';
 import 'package:movie_app/constants/api.dart';
 
 class MovieAPI {
+
   final client = http.Client();
 
   Future<List<Movie>> getMovies() async {
     List<Movie> movies = [];
-    for (int i = 1; i < 10; i++) {
+    for (int i = 1; i < ApiConstants.numberOfPages; i++) {
       dynamic data =
           await fetchData(urlString: ApiConstants.moviesURL, pageNumber: i);
 
