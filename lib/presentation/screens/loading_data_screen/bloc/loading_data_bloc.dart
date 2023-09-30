@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../constants/enums.dart';
-import '../../../data/models/genre.dart';
-import '../../../data/models/movie.dart';
-import '../../../data/repositories/movie_api.dart';
-import '../../../data/repositories/movie_database.dart';
+import '../../../../constants/enums.dart';
+import '../../../../data/models/genre.dart';
+import '../../../../data/models/movie.dart';
+import '../../../../data/repositories/movie_api.dart';
+import '../../../../data/repositories/movie_database.dart';
 
 part 'loading_data_bloc.freezed.dart';
 part 'loading_data_event.dart';

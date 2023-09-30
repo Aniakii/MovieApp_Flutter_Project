@@ -2,8 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:movie_app/constants/enums.dart';
 
-import '../../../data/models/genre.dart';
-import '../../../data/models/movie.dart';
+import '../../../../data/models/genre.dart';
+import '../../../../data/models/movie.dart';
 
 part 'all_movies_bloc.freezed.dart';
 part 'all_movies_event.dart';

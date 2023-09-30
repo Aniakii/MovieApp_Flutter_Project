@@ -6,8 +6,8 @@ import '../../../constants/enums.dart';
 import '../../widgets/error_alerts.dart';
 import '../../widgets/error_loading_data.dart';
 import '../../widgets/loading_data.dart';
-import '../all_movies_screen/all_movies_bloc.dart';
-import 'loading_data_bloc.dart';
+import '../all_movies_screen/bloc/all_movies_bloc.dart';
+import 'bloc/loading_data_bloc.dart';
 
 class LoadingScreen extends StatefulWidget {
   static const id = 'loading_screen';

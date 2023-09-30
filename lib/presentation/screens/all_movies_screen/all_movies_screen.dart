@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/constants/color_palette.dart';
 import 'package:movie_app/constants/enums.dart';
 import 'package:movie_app/data/models/sort_menu_item.dart';
-import 'package:movie_app/presentation/screens/all_movies_screen/all_movies_bloc.dart';
+import 'package:movie_app/presentation/screens/all_movies_screen/bloc/all_movies_bloc.dart';
 import 'package:movie_app/presentation/widgets/genre_list.dart';
 
 import '../../../constants/others.dart';
@@ -30,13 +30,6 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
     );
   }
 
-  @override
-  void dispose() {
-    _textEditingController.dispose();
-    _scrollController.dispose();
-    super.dispose();
-  }
-
   List<PopupMenuItem<SortingType>> getPopUpItems() {
     List<PopupMenuItem<SortingType>> preparedWidgets = [];
     for (SortMenuItem sortMenuItem in sortMenuItems) {
@@ -52,6 +45,13 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
       ));
     }
     return preparedWidgets;
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -87,46 +87,49 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
                 decoration: cardDecoration,
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: TextField(
-                            controller: _textEditingController,
-                            onChanged: (value) {
-                              textPattern = value;
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: TextField(
+                              controller: _textEditingController,
+                              onChanged: (value) {
+                                textPattern = value;
+                              },
+                              decoration: textFieldDecoration,
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.search,
+                              color: Colors.white.withOpacity(0.5),
+                            ),
+                            onPressed: () {
+                              context
+                                  .read<AllMoviesBloc>()
+                                  .add(SearchMovieByPatternEvent(textPattern));
+                              FocusScope.of(context).unfocus();
+                              _textEditingController.clear();
                             },
-                            decoration: textFieldDecoration,
                           ),
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.search,
-                            color: Colors.white.withOpacity(0.5),
+                          PopupMenuButton<SortingType>(
+                            onSelected: (SortingType sortingType) {
+                              context
+                                  .read<AllMoviesBloc>()
+                                  .add(SortMoviesEvent(sortingType));
+                              _scrollToTop();
+                            },
+                            child: Icon(
+                              Icons.swap_vert,
+                              color: Colors.white.withOpacity(0.5),
+                            ),
+                            itemBuilder: (BuildContext context) =>
+                                getPopUpItems(),
                           ),
-                          onPressed: () {
-                            context
-                                .read<AllMoviesBloc>()
-                                .add(SearchMovieByPatternEvent(textPattern));
-                            FocusScope.of(context).unfocus();
-                            _textEditingController.clear();
-                          },
-                        ),
-                        PopupMenuButton<SortingType>(
-                          onSelected: (SortingType sortingType) {
-                            context
-                                .read<AllMoviesBloc>()
-                                .add(SortMoviesEvent(sortingType));
-                            _scrollToTop();
-                          },
-                          child: Icon(
-                            Icons.swap_vert,
-                            color: Colors.white.withOpacity(0.5),
-                          ),
-                          itemBuilder: (BuildContext context) =>
-                              getPopUpItems(),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 15.0),
                     Expanded(
