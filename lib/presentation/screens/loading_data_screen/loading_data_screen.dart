@@ -28,8 +28,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
     return BlocConsumer<LoadingDataBloc, LoadingDataState>(
       listener: (context, state) {
         if (state.status == LoadingDataStatus.ready) {
-          context.read<AllMoviesBloc>().add(CreateInitialStateEvent(
-              allMovies: state.allMovies, allGenres: state.allGenres));
+          context.read<AllMoviesBloc>().add(
+                CreateInitialStateEvent(
+                    allMovies: state.allMovies, allGenres: state.allGenres),
+              );
           Navigator.of(context).pushReplacementNamed(AllMoviesScreen.id);
         } else if (state.status == LoadingDataStatus.errorOnline) {
           getAlertErrorOnline(context).show();

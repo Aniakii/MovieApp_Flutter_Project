@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../data/models/sort_menu_item.dart';
 import 'color_palette.dart';
 import 'enums.dart';
-import 'texts.dart';
 
 BoxDecoration cardDecoration = BoxDecoration(
   color: AppColors.grey,
@@ -21,43 +21,54 @@ BoxDecoration cardDecoration = BoxDecoration(
   ],
 );
 
-InputDecoration textFieldDecoration = InputDecoration(
-  hintText: AppTexts.searchHintText,
-  filled: true,
-  fillColor: Colors.white.withOpacity(0.5),
-  border: OutlineInputBorder(
-    borderRadius: BorderRadius.circular(20.0),
-    borderSide: BorderSide.none,
-  ),
-);
+List<SortMenuItem> getSortMenuItems(BuildContext context) {
+  return [
+    SortMenuItem(
+        icon: Icons.sort_by_alpha,
+        description: S.of(context)!.sortFromAtoZ,
+        sortType: SortingType.fromAtoZ),
+    SortMenuItem(
+        icon: Icons.sort_by_alpha,
+        description: S.of(context)!.sortFromZtoA,
+        sortType: SortingType.fromZtoA),
+    SortMenuItem(
+        icon: Icons.star_border,
+        description: S.of(context)!.sortWorstRate,
+        sortType: SortingType.worstRate),
+    SortMenuItem(
+        icon: Icons.star,
+        description: S.of(context)!.sortBestRate,
+        sortType: SortingType.bestRate),
+    SortMenuItem(
+        icon: Icons.expand_less,
+        description: S.of(context)!.sortMostPopular,
+        sortType: SortingType.mostPopular),
+    SortMenuItem(
+        icon: Icons.expand_more,
+        description: S.of(context)!.sortLeastPopular,
+        sortType: SortingType.leastPopular),
+    SortMenuItem(
+        icon: Icons.restart_alt,
+        description: S.of(context)!.sortDefaultSorting,
+        sortType: SortingType.defaultSorting),
+  ];
+}
 
-const List<SortMenuItem> sortMenuItems = [
-  SortMenuItem(
-      icon: Icons.sort_by_alpha,
-      description: 'From A to Z',
-      sortType: SortingType.fromAtoZ),
-  SortMenuItem(
-      icon: Icons.sort_by_alpha,
-      description: 'From Z to A',
-      sortType: SortingType.fromZtoA),
-  SortMenuItem(
-      icon: Icons.star_border,
-      description: 'Worst rate',
-      sortType: SortingType.worstRate),
-  SortMenuItem(
-      icon: Icons.star,
-      description: 'Best rate',
-      sortType: SortingType.bestRate),
-  SortMenuItem(
-      icon: Icons.expand_less,
-      description: 'Most popular',
-      sortType: SortingType.mostPopular),
-  SortMenuItem(
-      icon: Icons.expand_more,
-      description: 'Least popular',
-      sortType: SortingType.leastPopular),
-  SortMenuItem(
-      icon: Icons.restart_alt,
-      description: 'Default',
-      sortType: SortingType.defaultSorting),
-];
+List<PopupMenuItem<SortingType>> getPopUpItems(BuildContext context) {
+  List<PopupMenuItem<SortingType>> preparedWidgets = [];
+  for (SortMenuItem sortMenuItem in getSortMenuItems(context)) {
+    preparedWidgets.add(
+      PopupMenuItem<SortingType>(
+        value: sortMenuItem.sortType,
+        child: Row(
+          children: [
+            Icon(sortMenuItem.icon),
+            const SizedBox(width: 8.0),
+            Text(sortMenuItem.description),
+          ],
+        ),
+      ),
+    );
+  }
+  return preparedWidgets;
+}

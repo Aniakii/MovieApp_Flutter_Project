@@ -1,9 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../constants/color_palette.dart';
-import '../../constants/texts.dart';
 
 class LoadingDataWidget extends StatelessWidget {
   const LoadingDataWidget({super.key});
@@ -22,14 +22,24 @@ class LoadingDataWidget extends StatelessWidget {
             ),
             const SizedBox(height: 50.0),
             DefaultTextStyle(
-              style: const TextStyle(fontSize: 20.0),
+              style: const TextStyle(
+                fontSize: 20.0,
+              ),
               child: AnimatedTextKit(
                 repeatForever: true,
                 animatedTexts: [
-                  TypewriterAnimatedText(LoadingTexts.loadingText1,
-                      textStyle: const TextStyle(fontSize: 30.0)),
-                  TypewriterAnimatedText(LoadingTexts.loadingText2,
-                      textStyle: const TextStyle(fontSize: 30.0)),
+                  TypewriterAnimatedText(
+                    S.of(context)!.loadingText1,
+                    textStyle: const TextStyle(
+                      fontSize: 30.0,
+                    ),
+                  ),
+                  TypewriterAnimatedText(
+                    S.of(context)!.loadingText2,
+                    textStyle: const TextStyle(
+                      fontSize: 30.0,
+                    ),
+                  ),
                 ],
               ),
             ),

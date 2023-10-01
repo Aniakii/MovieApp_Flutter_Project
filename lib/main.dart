@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:movie_app/constants/color_palette.dart';
 import 'package:movie_app/data/repositories/movie_database.dart';
-import 'package:movie_app/presentation/screens/all_movies_screen/all_movies_bloc.dart';
 import 'package:movie_app/presentation/screens/all_movies_screen/all_movies_screen.dart';
-import 'package:movie_app/presentation/screens/loading_data_screen/loading_data_bloc.dart';
+import 'package:movie_app/presentation/screens/all_movies_screen/bloc/all_movies_bloc.dart';
+import 'package:movie_app/presentation/screens/loading_data_screen/bloc/loading_data_bloc.dart';
 import 'package:movie_app/presentation/screens/loading_data_screen/loading_data_screen.dart';
 import 'package:movie_app/presentation/screens/movie_screen/movie_screen.dart';
 
-import 'constants/texts.dart';
 import 'data/models/movie.dart';
 
 void main() async {
@@ -49,16 +49,19 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-          title: AppTexts.appName,
+          onGenerateTitle: (context) => S.of(context)!.appName,
+          supportedLocales: S.supportedLocales,
+          localizationsDelegates: S.localizationsDelegates,
           theme: ThemeData(
-              appBarTheme: const AppBarTheme(
-                color: AppColors.brighterPurple,
-                titleTextStyle: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20.0),
-              ),
-              colorScheme: const ColorScheme.dark()),
+            appBarTheme: const AppBarTheme(
+              color: AppColors.brighterPurple,
+              titleTextStyle: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0),
+            ),
+            colorScheme: const ColorScheme.dark(),
+          ),
           initialRoute: LoadingScreen.id,
           onGenerateRoute: generateRoutes,
         ),

@@ -17,11 +17,13 @@ class LoadingDataBloc extends Bloc<LoadingDataEvent, LoadingDataState> {
   final MovieDataBase movieDataBase;
 
   LoadingDataBloc(this.movieDataBase)
-      : super(const LoadingDataState(
-          status: LoadingDataStatus.loading,
-          allGenres: [],
-          allMovies: [],
-        )) {
+      : super(
+          const LoadingDataState(
+            status: LoadingDataStatus.loading,
+            allGenres: [],
+            allMovies: [],
+          ),
+        ) {
     on<FetchDataEvent>(_onFetchDataEvent);
     on<LoadDataEvent>(_onLoadDataEvent);
     on<ChangeLoadingStateEvent>(_onChangeLoadingStateEvent);
@@ -38,15 +40,26 @@ class LoadingDataBloc extends Bloc<LoadingDataEvent, LoadingDataState> {
         movie.genresAsString(allGenres);
       }
       movieDataBase.saveData(allMovies, allGenres);
-      emit(state.copyWith(
+      emit(
+        state.copyWith(
           allMovies: allMovies,
           allGenres: allGenres,
-          status: LoadingDataStatus.ready));
+          status: LoadingDataStatus.ready,
+        ),
+      );
     } catch (e) {
       if (e is SocketException) {
-        emit(state.copyWith(status: LoadingDataStatus.errorOnline));
+        emit(
+          state.copyWith(
+            status: LoadingDataStatus.errorOnline,
+          ),
+        );
       } else {
-        emit(state.copyWith(status: LoadingDataStatus.errorOther));
+        emit(
+          state.copyWith(
+            status: LoadingDataStatus.errorOther,
+          ),
+        );
       }
     }
   }
@@ -56,20 +69,35 @@ class LoadingDataBloc extends Bloc<LoadingDataEvent, LoadingDataState> {
       movieDataBase.loadFromDatabase();
 
       if (movieDataBase.movies.isEmpty || movieDataBase.genres.isEmpty) {
-        emit(state.copyWith(status: LoadingDataStatus.errorOffline));
+        emit(
+          state.copyWith(
+            status: LoadingDataStatus.errorOffline,
+          ),
+        );
       } else {
-        emit(state.copyWith(
+        emit(
+          state.copyWith(
             allMovies: movieDataBase.movies,
             allGenres: movieDataBase.genres,
-            status: LoadingDataStatus.ready));
+            status: LoadingDataStatus.ready,
+          ),
+        );
       }
     } catch (e) {
-      emit(state.copyWith(status: LoadingDataStatus.errorOther));
+      emit(
+        state.copyWith(
+          status: LoadingDataStatus.errorOther,
+        ),
+      );
     }
   }
 
   void _onChangeLoadingStateEvent(
       ChangeLoadingStateEvent event, Emitter<LoadingDataState> emit) {
-    emit(state.copyWith(status: LoadingDataStatus.loading));
+    emit(
+      state.copyWith(
+        status: LoadingDataStatus.loading,
+      ),
+    );
   }
 }

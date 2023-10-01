@@ -16,7 +16,9 @@ class MovieScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(selectedMovie.title),
+        title: Text(
+          selectedMovie.title,
+        ),
       ),
       body: SingleChildScrollView(
         child: SafeArea(

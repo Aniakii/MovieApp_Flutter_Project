@@ -24,10 +24,13 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
 
   void _createInitialState(
       CreateInitialStateEvent event, Emitter<AllMoviesState> emit) {
-    emit(state.copyWith(
+    emit(
+      state.copyWith(
         allMovies: event.allMovies,
         allGenres: event.allGenres,
-        filteredMovies: event.allMovies));
+        filteredMovies: event.allMovies,
+      ),
+    );
   }
 
   void _onSelectGenreEvent(
@@ -37,11 +40,19 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
           .where(
               (Movie movie) => movie.genres.contains(event.selectedGenre?.id))
           .toList();
-      emit(state.copyWith(
-          filteredMovies: filteredMovies, selectedGenre: event.selectedGenre));
+      emit(
+        state.copyWith(
+          filteredMovies: filteredMovies,
+          selectedGenre: event.selectedGenre,
+        ),
+      );
     } else {
-      emit(state.copyWith(
-          selectedGenre: event.selectedGenre, filteredMovies: state.allMovies));
+      emit(
+        state.copyWith(
+          selectedGenre: event.selectedGenre,
+          filteredMovies: state.allMovies,
+        ),
+      );
     }
   }
 
@@ -62,22 +73,34 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
       case SortingType.leastPopular:
         filteredMovies.sort((a, b) => a.popularity.compareTo(b.popularity));
       case SortingType.defaultSorting:
-        filteredMovies.sort((a, b) {
-          final indexOfA = state.allMovies.indexOf(a);
-          final indexOfB = state.allMovies.indexOf(b);
-          return indexOfA.compareTo(indexOfB);
-        });
+        filteredMovies.sort(
+          (a, b) {
+            final indexOfA = state.allMovies.indexOf(a);
+            final indexOfB = state.allMovies.indexOf(b);
+            return indexOfA.compareTo(indexOfB);
+          },
+        );
     }
 
-    emit(state.copyWith(filteredMovies: filteredMovies));
+    emit(
+      state.copyWith(
+        filteredMovies: filteredMovies,
+      ),
+    );
   }
 
   void _onSearchMovieByPatternEvent(
       SearchMovieByPatternEvent event, Emitter<AllMoviesState> emit) {
     List<Movie> matchedMovies = state.allMovies
-        .where((Movie movie) =>
-            movie.title.toLowerCase().contains(event.textPattern))
+        .where(
+          (Movie movie) =>
+              movie.title.toLowerCase().contains(event.textPattern),
+        )
         .toList();
-    emit(state.copyWith(filteredMovies: matchedMovies));
+    emit(
+      state.copyWith(
+        filteredMovies: matchedMovies,
+      ),
+    );
   }
 }

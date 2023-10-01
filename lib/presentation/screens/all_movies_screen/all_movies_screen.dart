@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:movie_app/constants/color_palette.dart';
 import 'package:movie_app/constants/enums.dart';
-import 'package:movie_app/data/models/sort_menu_item.dart';
 import 'package:movie_app/presentation/screens/all_movies_screen/bloc/all_movies_bloc.dart';
 import 'package:movie_app/presentation/widgets/genre_list.dart';
 
 import '../../../constants/others.dart';
-import '../../../constants/texts.dart';
 import '../../widgets/header.dart';
 import '../../widgets/movie_list.dart';
 
@@ -30,23 +29,6 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
     );
   }
 
-  List<PopupMenuItem<SortingType>> getPopUpItems() {
-    List<PopupMenuItem<SortingType>> preparedWidgets = [];
-    for (SortMenuItem sortMenuItem in sortMenuItems) {
-      preparedWidgets.add(PopupMenuItem<SortingType>(
-        value: sortMenuItem.sortType,
-        child: Row(
-          children: [
-            Icon(sortMenuItem.icon),
-            const SizedBox(width: 8.0),
-            Text(sortMenuItem.description),
-          ],
-        ),
-      ));
-    }
-    return preparedWidgets;
-  }
-
   @override
   void dispose() {
     _textEditingController.dispose();
@@ -62,7 +44,9 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.brighterPurple,
       appBar: AppBar(
-        title: const Text(AppTexts.appName),
+        title: Text(
+          S.of(context)!.appName,
+        ),
         automaticallyImplyLeading: false,
       ),
       body: GestureDetector(
@@ -98,7 +82,15 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
                               onChanged: (value) {
                                 textPattern = value;
                               },
-                              decoration: textFieldDecoration,
+                              decoration: InputDecoration(
+                                hintText: S.of(context)!.searchHintText,
+                                filled: true,
+                                fillColor: Colors.white.withOpacity(0.5),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
                             ),
                           ),
                           IconButton(
@@ -126,7 +118,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
                               color: Colors.white.withOpacity(0.5),
                             ),
                             itemBuilder: (BuildContext context) =>
-                                getPopUpItems(),
+                                getPopUpItems(context),
                           ),
                         ],
                       ),

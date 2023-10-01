@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../constants/texts.dart';
 import '../../data/models/movie.dart';
 
 class MovieInfo extends StatelessWidget {
@@ -17,7 +17,10 @@ class MovieInfo extends StatelessWidget {
         children: [
           Text(
             selectedMovie.title,
-            style: const TextStyle(fontSize: 35.0, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+              fontSize: 35.0,
+              fontWeight: FontWeight.bold,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(
@@ -28,32 +31,44 @@ class MovieInfo extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  const Text(
-                    MovieDesc.moviePopularity,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  Text(
+                    S.of(context)!.moviePopularity,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   Text(selectedMovie.popularity.toString()),
                 ],
               ),
-              Column(children: [
-                const Text(
-                  MovieDesc.movieVoteRate,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Row(children: [
-                  Text(selectedMovie.voteAverage.toString()),
-                  const Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                    size: 20.0,
-                  ),
-                ]),
-              ]),
               Column(
                 children: [
-                  const Text(
-                    MovieDesc.movieReleaseDate,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  Text(
+                    S.of(context)!.movieVoteRate,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        selectedMovie.voteAverage.toString(),
+                      ),
+                      const Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                        size: 20.0,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Text(
+                    S.of(context)!.movieReleaseDate,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   Text(
                     selectedMovie.releaseDate
@@ -68,9 +83,11 @@ class MovieInfo extends StatelessWidget {
           const SizedBox(
             height: 15.0,
           ),
-          const Text(
-            MovieDesc.movieGenre,
-            style: TextStyle(fontWeight: FontWeight.bold),
+          Text(
+            S.of(context)!.movieGenre,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
           ),
           Text(
             selectedMovie.stringGenres,
@@ -80,19 +97,28 @@ class MovieInfo extends StatelessWidget {
           const SizedBox(
             height: 15.0,
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 10.0),
-            child: Text(MovieDesc.movieOverview,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-                textAlign: TextAlign.left),
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0),
+            child: Text(
+              S.of(context)!.movieOverview,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20.0,
+              ),
+              textAlign: TextAlign.left,
+            ),
           ),
           const SizedBox(
             height: 15.0,
           ),
-          Text(selectedMovie.overview,
-              softWrap: true,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 18.0)),
+          Text(
+            selectedMovie.overview,
+            softWrap: true,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 18.0,
+            ),
+          ),
         ],
       ),
     );

@@ -22,18 +22,21 @@ class MovieAPI {
         for (var movieData in movieList) {
           String poster =
               ApiConstants.posterURL + (movieData['poster_path'] ?? '');
-          movies.add(Movie(
-            id: movieData['id'] ?? 0,
-            originalLanguage: movieData['original_language'] ?? 'Unknown',
-            title: movieData['title'] ?? 'Unknown',
-            overview: movieData['overview'] ?? 'Unknown',
-            popularity: (movieData['popularity'] as num?)?.toDouble() ?? 0.0,
-            posterImage: poster,
-            releaseDate:
-                DateTime.parse(movieData['release_date'] ?? '0000-00-00'),
-            voteAverage: (movieData['vote_average'] as num?)?.toDouble() ?? 0.0,
-            genres: (movieData['genre_ids'] as List<dynamic>).cast<int>(),
-          ));
+          movies.add(
+            Movie(
+              id: movieData['id'] ?? 0,
+              originalLanguage: movieData['original_language'] ?? 'Unknown',
+              title: movieData['title'] ?? 'Unknown',
+              overview: movieData['overview'] ?? 'Unknown',
+              popularity: (movieData['popularity'] as num?)?.toDouble() ?? 0.0,
+              posterImage: poster,
+              releaseDate:
+                  DateTime.parse(movieData['release_date'] ?? '0000-00-00'),
+              voteAverage:
+                  (movieData['vote_average'] as num?)?.toDouble() ?? 0.0,
+              genres: (movieData['genre_ids'] as List<dynamic>).cast<int>(),
+            ),
+          );
         }
       }
     }
@@ -47,10 +50,12 @@ class MovieAPI {
       List<dynamic> genreList = data['genres'];
 
       for (var genreData in genreList) {
-        genres.add(Genre(
-          id: genreData['id'],
-          name: genreData['name'],
-        ));
+        genres.add(
+          Genre(
+            id: genreData['id'],
+            name: genreData['name'],
+          ),
+        );
       }
     }
     return genres;

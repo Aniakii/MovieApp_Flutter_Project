@@ -25,13 +25,17 @@ class MovieCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
-                width: 50.0,
-                child: Center(
-                    child: Text(
+              width: 50.0,
+              child: Center(
+                child: Text(
                   positionNumber.toString(),
                   style: const TextStyle(
-                      fontSize: 25.0, fontWeight: FontWeight.bold),
-                ))),
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Hero(
@@ -40,7 +44,9 @@ class MovieCard extends StatelessWidget {
                   imageUrl: presentedMovie.posterImage,
                   placeholder: (context, url) => const SizedBox(
                     width: 95.0,
-                    child: Center(child: CircularProgressIndicator()),
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
                   ),
                   errorWidget: (context, url, error) => Image.asset(
                     'assets/images/error_image.png',
@@ -59,12 +65,16 @@ class MovieCard extends StatelessWidget {
                   Text(
                     presentedMovie.title,
                     style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 20.0),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0,
+                    ),
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 3,
                   ),
-                  Text((presentedMovie.releaseDate.year).toString()),
+                  Text(
+                    (presentedMovie.releaseDate.year).toString(),
+                  ),
                   Text(
                     'Genre:\n${presentedMovie.stringGenres}',
                     softWrap: true,
@@ -75,18 +85,22 @@ class MovieCard extends StatelessWidget {
               ),
             ),
             const Expanded(
-                flex: 1,
-                child: Icon(
-                  Icons.star,
-                  color: Colors.amber,
-                )),
+              flex: 1,
+              child: Icon(
+                Icons.star,
+                color: Colors.amber,
+              ),
+            ),
             Expanded(
-                flex: 1,
-                child: Text(
-                  presentedMovie.voteAverage.toString(),
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 18.0),
-                )),
+              flex: 1,
+              child: Text(
+                presentedMovie.voteAverage.toString(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
+                ),
+              ),
+            ),
           ],
         ),
       ),
